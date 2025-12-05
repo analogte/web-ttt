@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="site_title">เที่ยวไทย - Discover Thailand</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <img src="https://www.tourismthailand.org/assets/image/logo.png" alt="TAT Logo" class="logo-img">
+                    <span data-i18n="logo_text">เที่ยวไทย</span>
+                </a>
+
+                <ul class="nav-menu">
+                    <li><a href="#home" data-i18n="nav_home">หน้าแรก</a></li>
+                    <li><a href="#attractions" data-i18n="nav_attractions">สถานที่ท่องเที่ยว</a></li>
+                    <li><a href="#events" data-i18n="nav_events">กิจกรรม</a></li>
+                    <li><a href="#restaurants" data-i18n="nav_restaurants">ร้านอาหาร</a></li>
+                    <li><a href="#hotels" data-i18n="nav_hotels">ที่พัก</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact">ติดต่อ</a></li>
+                </ul>
+
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="th">
+                        <span class="flag">🇹🇭</span>
+                        <span>ไทย</span>
+                    </button>
+                    <button class="lang-btn" data-lang="en">
+                        <span class="flag">🇬🇧</span>
+                        <span>EN</span>
+                    </button>
+                    <button class="lang-btn" data-lang="zh">
+                        <span class="flag">🇨🇳</span>
+                        <span>中文</span>
+                    </button>
+                </div>
+
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1528181304800-259b08848526?w=1920');">
+                <div class="hero-content">
+                    <h1 data-i18n="hero_title">ยินดีต้อนรับสู่ประเทศไทย</h1>
+                    <p data-i18n="hero_subtitle">ดินแดนแห่งรอยยิ้ม วัฒนธรรมอันงดงาม และธรรมชาติที่สวยงาม</p>
+                    <a href="#attractions" class="btn btn-primary" data-i18n="hero_cta">สำรวจเลย</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=1920');">
+                <div class="hero-content">
+                    <h1 data-i18n="hero_title2">สัมผัสความงามแห่งทะเลไทย</h1>
+                    <p data-i18n="hero_subtitle2">ชายหาดสวยระดับโลก น้ำทะเลใส และธรรมชาติที่บริสุทธิ์</p>
+                    <a href="#attractions" class="btn btn-primary" data-i18n="hero_cta">สำรวจเลย</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=1920');">
+                <div class="hero-content">
+                    <h1 data-i18n="hero_title3">วัฒนธรรมและประวัติศาสตร์</h1>
+                    <p data-i18n="hero_subtitle3">วัดวาอารามอันศักดิ์สิทธิ์ และมรดกทางวัฒนธรรมอันล้ำค่า</p>
+                    <a href="#attractions" class="btn btn-primary" data-i18n="hero_cta">สำรวจเลย</a>
+                </div>
+            </div>
+        </div>
+        <div class="slider-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <h2 data-i18n="search_title">ค้นหาสถานที่ท่องเที่ยว</h2>
+                <div class="search-form">
+                    <div class="search-input-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="ค้นหาสถานที่ท่องเที่ยว...">
+                    </div>
+                    <select id="categorySelect" class="search-select">
+                        <option value="" data-i18n="category_all">ทุกหมวดหมู่</option>
+                        <option value="ATTRACTION" data-i18n="category_attraction">สถานที่ท่องเที่ยว</option>
+                        <option value="RESTAURANT" data-i18n="category_restaurant">ร้านอาหาร</option>
+                        <option value="ACCOMMODATION" data-i18n="category_hotel">ที่พัก</option>
+                        <option value="SHOP" data-i18n="category_shop">ร้านค้า</option>
+                    </select>
+                    <select id="provinceSelect" class="search-select">
+                        <option value="" data-i18n="province_all">ทุกจังหวัด</option>
+                    </select>
+                    <button id="searchBtn" class="btn btn-primary" data-i18n="search_btn">ค้นหา</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Attractions -->
+    <section id="attractions" class="section attractions-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="attractions_title">สถานที่ท่องเที่ยวยอดนิยม</h2>
+                <p data-i18n="attractions_subtitle">ค้นพบความงามของประเทศไทยที่รอคุณอยู่</p>
+            </div>
+            <div class="loading" id="attractionsLoading">
+                <div class="spinner"></div>
+                <p data-i18n="loading">กำลังโหลด...</p>
+            </div>
+            <div class="attractions-grid" id="attractionsGrid">
+                <!-- Attractions will be loaded dynamically -->
+            </div>
+            <div class="load-more">
+                <button id="loadMoreAttractions" class="btn btn-secondary" data-i18n="load_more">โหลดเพิ่มเติม</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="section events-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="events_title">กิจกรรมและเทศกาล</h2>
+                <p data-i18n="events_subtitle">ร่วมสัมผัสเทศกาลและกิจกรรมที่น่าสนใจทั่วไทย</p>
+            </div>
+            <div class="loading" id="eventsLoading">
+                <div class="spinner"></div>
+                <p data-i18n="loading">กำลังโหลด...</p>
+            </div>
+            <div class="events-grid" id="eventsGrid">
+                <!-- Events will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurants Section -->
+    <section id="restaurants" class="section restaurants-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="restaurants_title">ร้านอาหารแนะนำ</h2>
+                <p data-i18n="restaurants_subtitle">ลิ้มรสอาหารไทยแท้และอาหารนานาชาติ</p>
+            </div>
+            <div class="loading" id="restaurantsLoading">
+                <div class="spinner"></div>
+                <p data-i18n="loading">กำลังโหลด...</p>
+            </div>
+            <div class="restaurants-grid" id="restaurantsGrid">
+                <!-- Restaurants will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotels Section -->
+    <section id="hotels" class="section hotels-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="hotels_title">ที่พักยอดนิยม</h2>
+                <p data-i18n="hotels_subtitle">ที่พักหลากหลายสไตล์ ตอบโจทย์ทุกการเดินทาง</p>
+            </div>
+            <div class="loading" id="hotelsLoading">
+                <div class="spinner"></div>
+                <p data-i18n="loading">กำลังโหลด...</p>
+            </div>
+            <div class="hotels-grid" id="hotelsGrid">
+                <!-- Hotels will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Provinces Section -->
+    <section class="section provinces-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="provinces_title">ท่องเที่ยวตามภูมิภาค</h2>
+                <p data-i18n="provinces_subtitle">เลือกภูมิภาคที่คุณสนใจ</p>
+            </div>
+            <div class="regions-grid">
+                <div class="region-card" data-region="north">
+                    <div class="region-image" style="background-image: url('https://images.unsplash.com/photo-1598935898639-81629f717fcd?w=600');"></div>
+                    <div class="region-content">
+                        <h3 data-i18n="region_north">ภาคเหนือ</h3>
+                        <p data-i18n="region_north_desc">เชียงใหม่ เชียงราย และความงามแห่งขุนเขา</p>
+                    </div>
+                </div>
+                <div class="region-card" data-region="northeast">
+                    <div class="region-image" style="background-image: url('https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=600');"></div>
+                    <div class="region-content">
+                        <h3 data-i18n="region_northeast">ภาคอีสาน</h3>
+                        <p data-i18n="region_northeast_desc">วัฒนธรรมลาว อาหารอีสาน และอารยธรรมโบราณ</p>
+                    </div>
+                </div>
+                <div class="region-card" data-region="central">
+                    <div class="region-image" style="background-image: url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600');"></div>
+                    <div class="region-content">
+                        <h3 data-i18n="region_central">ภาคกลาง</h3>
+                        <p data-i18n="region_central_desc">กรุงเทพฯ อยุธยา และเมืองหลวงแห่งสยาม</p>
+                    </div>
+                </div>
+                <div class="region-card" data-region="east">
+                    <div class="region-image" style="background-image: url('https://images.unsplash.com/photo-1540202404-a2f29016b523?w=600');"></div>
+                    <div class="region-content">
+                        <h3 data-i18n="region_east">ภาคตะวันออก</h3>
+                        <p data-i18n="region_east_desc">พัทยา ระยอง ตราด และเกาะช้าง</p>
+                    </div>
+                </div>
+                <div class="region-card" data-region="south">
+                    <div class="region-image" style="background-image: url('https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=600');"></div>
+                    <div class="region-content">
+                        <h3 data-i18n="region_south">ภาคใต้</h3>
+                        <p data-i18n="region_south_desc">ภูเก็ต กระบี่ และทะเลอันดามัน</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="contact_title">ติดต่อเรา</h2>
+                <p data-i18n="contact_subtitle">มีคำถามหรือต้องการความช่วยเหลือ? ติดต่อเราได้ที่นี่</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4 data-i18n="contact_address">ที่อยู่</h4>
+                            <p data-i18n="contact_address_text">การท่องเที่ยวแห่งประเทศไทย (ททท.)<br>1600 ถนนเพชรบุรีตัดใหม่ แขวงมักกะสัน<br>เขตราชเทวี กรุงเทพฯ 10400</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4 data-i18n="contact_phone">โทรศัพท์</h4>
+                            <p>1672 (TAT Contact Center)</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4 data-i18n="contact_email">อีเมล</h4>
+                            <p>info@tat.or.th</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/TATNewsroom" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/TATNewsroom" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/amazingthailand" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/user/TourismAuthorityTH" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label data-i18n="form_name">ชื่อ-นามสกุล</label>
+                            <input type="text" name="name" required data-i18n-placeholder="form_name_placeholder" placeholder="กรุณากรอกชื่อ-นามสกุล">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="form_email">อีเมล</label>
+                            <input type="email" name="email" required data-i18n-placeholder="form_email_placeholder" placeholder="กรุณากรอกอีเมล">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="form_subject">หัวข้อ</label>
+                            <input type="text" name="subject" required data-i18n-placeholder="form_subject_placeholder" placeholder="กรุณากรอกหัวข้อ">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="form_message">ข้อความ</label>
+                            <textarea name="message" rows="5" required data-i18n-placeholder="form_message_placeholder" placeholder="กรุณากรอกข้อความ"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" data-i18n="form_submit">ส่งข้อความ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 data-i18n="footer_about">เกี่ยวกับเรา</h3>
+                    <p data-i18n="footer_about_text">การท่องเที่ยวแห่งประเทศไทย (ททท.) มุ่งมั่นส่งเสริมการท่องเที่ยวไทยให้เป็นที่รู้จักไปทั่วโลก</p>
+                </div>
+                <div class="footer-col">
+                    <h3 data-i18n="footer_links">ลิงก์ที่เกี่ยวข้อง</h3>
+                    <ul>
+                        <li><a href="https://www.tourismthailand.org" target="_blank">Tourism Thailand</a></li>
+                        <li><a href="https://www.tat.or.th" target="_blank">TAT Official</a></li>
+                        <li><a href="https://www.tatnews.org" target="_blank">TAT News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 data-i18n="footer_quick_links">ลิงก์ลัด</h3>
+                    <ul>
+                        <li><a href="#home" data-i18n="nav_home">หน้าแรก</a></li>
+                        <li><a href="#attractions" data-i18n="nav_attractions">สถานที่ท่องเที่ยว</a></li>
+                        <li><a href="#events" data-i18n="nav_events">กิจกรรม</a></li>
+                        <li><a href="#contact" data-i18n="nav_contact">ติดต่อ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 data-i18n="footer_newsletter">จดหมายข่าว</h3>
+                    <p data-i18n="footer_newsletter_text">รับข่าวสารการท่องเที่ยวล่าสุด</p>
+                    <form class="newsletter-form">
+                        <input type="email" data-i18n-placeholder="newsletter_placeholder" placeholder="อีเมลของคุณ">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 <span data-i18n="footer_copyright">การท่องเที่ยวแห่งประเทศไทย - สงวนลิขสิทธิ์</span></p>
+                <p data-i18n="footer_powered">Powered by TAT Open Data API</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Attraction Details -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalContent">
+                <!-- Detail content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
