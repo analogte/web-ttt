@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="article_page_title">บทความ - เที่ยวไทย</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="อ่านบทความท่องเที่ยวไทย เคล็ดลับการเที่ยว แนะนำสถานที่ อาหาร และวัฒนธรรมไทย">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="เที่ยวไทย - Discover Thailand">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇹🇭</text></svg>">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Article Page Specific Styles */
+        .article-page {
+            padding-top: 100px;
+            min-height: 100vh;
+            background: #f9f9f9;
+        }
+
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .article-header {
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: #666;
+            font-size: 0.95rem;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .article-meta i {
+            color: var(--primary-color);
+        }
+
+        .article-featured-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .article-content h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .article-content h3 {
+            color: var(--dark-color);
+            font-size: 1.4rem;
+            margin: 25px 0 10px;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin: 20px 0;
+            padding-left: 25px;
+        }
+
+        .article-content li {
+            margin-bottom: 10px;
+        }
+
+        .article-content strong {
+            color: var(--dark-color);
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .article-tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .article-share {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .article-share span {
+            font-weight: 500;
+            color: #666;
+        }
+
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .share-btn.facebook {
+            background: #1877f2;
+        }
+
+        .share-btn.twitter {
+            background: #1da1f2;
+        }
+
+        .share-btn.line {
+            background: #00b900;
+        }
+
+        .share-btn.copy {
+            background: #666;
+        }
+
+        .related-articles {
+            margin-top: 50px;
+        }
+
+        .related-articles h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .article-not-found {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .article-not-found i {
+            font-size: 5rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .article-not-found h2 {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .article-not-found p {
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        .article-not-found .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .article-not-found .btn:hover {
+            background: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.8rem;
+            }
+
+            .article-content {
+                padding: 25px;
+                font-size: 1rem;
+            }
+
+            .article-featured-image {
+                height: 250px;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <img src="https://www.tourismthailand.org/assets/image/logo.png" alt="TAT Logo" class="logo-img">
+                    <span data-i18n="logo_text">เที่ยวไทย</span>
+                </a>
+
+                <ul class="nav-menu">
+                    <li><a href="index.html#home" data-i18n="nav_home">หน้าแรก</a></li>
+                    <li><a href="index.html#attractions" data-i18n="nav_attractions">สถานที่ท่องเที่ยว</a></li>
+                    <li><a href="index.html#events" data-i18n="nav_events">กิจกรรม</a></li>
+                    <li><a href="index.html#restaurants" data-i18n="nav_restaurants">ร้านอาหาร</a></li>
+                    <li><a href="index.html#hotels" data-i18n="nav_hotels">ที่พัก</a></li>
+                    <li><a href="index.html#articles" data-i18n="nav_articles">บทความ</a></li>
+                    <li><a href="index.html#contact" data-i18n="nav_contact">ติดต่อ</a></li>
+                </ul>
+
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="th">
+                        <span class="flag">🇹🇭</span>
+                        <span>ไทย</span>
+                    </button>
+                    <button class="lang-btn" data-lang="en">
+                        <span class="flag">🇬🇧</span>
+                        <span>EN</span>
+                    </button>
+                    <button class="lang-btn" data-lang="zh">
+                        <span class="flag">🇨🇳</span>
+                        <span>中文</span>
+                    </button>
+                </div>
+
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Article Content -->
+    <main class="article-page">
+        <div class="article-container" id="articleContainer">
+            <!-- Article content will be loaded here -->
+            <div class="loading" id="articleLoading">
+                <div class="spinner"></div>
+                <p data-i18n="loading">กำลังโหลด...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-i18n="footer_about">เกี่ยวกับเรา</h4>
+                    <p data-i18n="footer_about_text">เว็บไซต์ท่องเที่ยวไทยที่รวบรวมข้อมูลสถานที่ท่องเที่ยว กิจกรรม ร้านอาหาร และที่พักทั่วประเทศไทย</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer_links">ลิงก์ด่วน</h4>
+                    <ul>
+                        <li><a href="index.html#attractions" data-i18n="nav_attractions">สถานที่ท่องเที่ยว</a></li>
+                        <li><a href="index.html#events" data-i18n="nav_events">กิจกรรม</a></li>
+                        <li><a href="index.html#restaurants" data-i18n="nav_restaurants">ร้านอาหาร</a></li>
+                        <li><a href="index.html#hotels" data-i18n="nav_hotels">ที่พัก</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer_contact">ติดต่อเรา</h4>
+                    <p><i class="fas fa-phone"></i> 1672</p>
+                    <p><i class="fas fa-envelope"></i> info@tourismthailand.org</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer_follow">ติดตามเรา</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer_copyright">&copy; 2024 เที่ยวไทย - Tourism Authority of Thailand. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/articles.js"></script>
+    <script>
+        // Article Page State
+        let currentLang = localStorage.getItem('preferredLang') || 'th';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initLanguage();
+            initNavigation();
+            loadArticle();
+        });
+
+        // Language System
+        function initLanguage() {
+            setLanguage(currentLang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.dataset.lang;
+                    setLanguage(lang);
+                    loadArticle(); // Reload article with new language
+                });
+            });
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('preferredLang', lang);
+            document.body.setAttribute('data-lang', lang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            translatePage(lang);
+        }
+
+        function translatePage(lang) {
+            const trans = translations[lang];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (trans[key]) {
+                    el.innerHTML = trans[key];
+                }
+            });
+        }
+
+        function t(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        // Navigation
+        function initNavigation() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            hamburger?.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    hamburger?.classList.remove('active');
+                });
+            });
+        }
+
+        // Load Article
+        function loadArticle() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const slug = urlParams.get('slug');
+
+            const container = document.getElementById('articleContainer');
+            const loading = document.getElementById('articleLoading');
+
+            if (!slug) {
+                showNotFound(container);
+                return;
+            }
+
+            const article = getArticleBySlug(slug);
+
+            if (!article) {
+                showNotFound(container);
+                return;
+            }
+
+            // Update page title and meta
+            const title = article.title[currentLang] || article.title.en;
+            document.title = `${title} - เที่ยวไทย`;
+
+            // Update OG tags
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            const ogDesc = document.querySelector('meta[property="og:description"]');
+            const ogImage = document.querySelector('meta[property="og:image"]');
+
+            if (ogTitle) ogTitle.content = title;
+            if (ogDesc) ogDesc.content = article.excerpt[currentLang] || article.excerpt.en;
+            if (ogImage) ogImage.content = article.thumbnail;
+
+            // Render article
+            renderArticle(article, container);
+        }
+
+        function renderArticle(article, container) {
+            const title = article.title[currentLang] || article.title.en;
+            const content = article.content[currentLang] || article.content.en;
+            const category = article.category[currentLang] || article.category.en;
+            const excerpt = article.excerpt[currentLang] || article.excerpt.en;
+
+            const backText = currentLang === 'th' ? 'กลับหน้าหลัก' :
+                            currentLang === 'zh' ? '返回首页' : 'Back to Home';
+            const shareText = currentLang === 'th' ? 'แชร์บทความ' :
+                             currentLang === 'zh' ? '分享文章' : 'Share Article';
+            const readText = currentLang === 'th' ? 'นาที' :
+                            currentLang === 'zh' ? '分钟' : 'min read';
+            const relatedText = currentLang === 'th' ? 'บทความที่เกี่ยวข้อง' :
+                               currentLang === 'zh' ? '相关文章' : 'Related Articles';
+
+            container.innerHTML = `
+                <div class="article-header">
+                    <a href="index.html#articles" class="back-link">
+                        <i class="fas fa-arrow-left"></i> ${backText}
+                    </a>
+                    <span class="article-category">${category}</span>
+                    <h1 class="article-title">${title}</h1>
+                    <div class="article-meta">
+                        <span><i class="fas fa-user"></i> ${article.author}</span>
+                        <span><i class="fas fa-calendar"></i> ${formatDate(article.publishDate)}</span>
+                        <span><i class="fas fa-clock"></i> ${article.readTime} ${readText}</span>
+                    </div>
+                </div>
+
+                <img src="${article.thumbnail}" alt="${title}" class="article-featured-image"
+                     onerror="this.src='https://images.unsplash.com/photo-1528181304800-259b08848526?w=800'">
+
+                <div class="article-content">
+                    ${content}
+
+                    <div class="article-tags">
+                        ${article.tags.map(tag => `<span class="article-tag">#${tag}</span>`).join('')}
+                    </div>
+
+                    <div class="article-share">
+                        <span>${shareText}:</span>
+                        <button class="share-btn facebook" onclick="shareToFacebook()" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button class="share-btn twitter" onclick="shareToTwitter()" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button class="share-btn line" onclick="shareToLine()" title="LINE">
+                            <i class="fab fa-line"></i>
+                        </button>
+                        <button class="share-btn copy" onclick="copyLink()" title="Copy Link">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="related-articles">
+                    <h3>${relatedText}</h3>
+                    <div class="related-grid" id="relatedGrid"></div>
+                </div>
+            `;
+
+            // Load related articles
+            loadRelatedArticles(article.slug);
+        }
+
+        function loadRelatedArticles(currentSlug) {
+            const grid = document.getElementById('relatedGrid');
+            const allArticles = getArticles();
+            const related = allArticles.filter(a => a.slug !== currentSlug).slice(0, 3);
+
+            related.forEach(article => {
+                const title = article.title[currentLang] || article.title.en;
+                const excerpt = article.excerpt[currentLang] || article.excerpt.en;
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${article.thumbnail}" alt="${title}"
+                             onerror="this.src='https://images.unsplash.com/photo-1528181304800-259b08848526?w=600'">
+                    </div>
+                    <div class="card-content">
+                        <h3>${title}</h3>
+                        <p>${excerpt.substring(0, 80)}...</p>
+                    </div>
+                `;
+                card.addEventListener('click', () => {
+                    window.location.href = `article.html?slug=${article.slug}`;
+                });
+                grid.appendChild(card);
+            });
+        }
+
+        function showNotFound(container) {
+            const notFoundTitle = currentLang === 'th' ? 'ไม่พบบทความ' :
+                                 currentLang === 'zh' ? '文章未找到' : 'Article Not Found';
+            const notFoundText = currentLang === 'th' ? 'บทความที่คุณกำลังหาอาจถูกลบหรือไม่มีอยู่' :
+                                currentLang === 'zh' ? '您正在查找的文章可能已被删除或不存在' :
+                                'The article you are looking for may have been removed or does not exist';
+            const backText = currentLang === 'th' ? 'กลับหน้าหลัก' :
+                            currentLang === 'zh' ? '返回首页' : 'Back to Home';
+
+            container.innerHTML = `
+                <div class="article-not-found">
+                    <i class="fas fa-file-alt"></i>
+                    <h2>${notFoundTitle}</h2>
+                    <p>${notFoundText}</p>
+                    <a href="index.html" class="btn">${backText}</a>
+                </div>
+            `;
+        }
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const locale = currentLang === 'th' ? 'th-TH' : currentLang === 'zh' ? 'zh-CN' : 'en-US';
+            return date.toLocaleDateString(locale, options);
+        }
+
+        // Share functions
+        function shareToFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareToTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(document.querySelector('.article-title')?.textContent || '');
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareToLine() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://social-plugins.line.me/lineit/share?url=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const msg = currentLang === 'th' ? 'คัดลอกลิงก์แล้ว!' :
+                           currentLang === 'zh' ? '链接已复制！' : 'Link copied!';
+                alert(msg);
+            });
+        }
+    </script>
+</body>
+</html>

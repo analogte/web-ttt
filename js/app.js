@@ -70,6 +70,9 @@ function setLanguage(lang) {
         renderRestaurants();
         renderHotels();
     }
+
+    // Re-render articles with new language
+    renderArticles();
 }
 
 function translatePage(lang) {
@@ -215,6 +218,9 @@ async function loadAllData() {
     showLoading('restaurantsLoading', true);
     showLoading('hotelsLoading', true);
 
+    // Render articles immediately (they're local data)
+    renderArticles();
+
     // Load all data in parallel
     await Promise.all([
         loadAttractions(),
@@ -349,6 +355,64 @@ function renderHotels() {
         const card = createCard(item, 'hotel', index);
         grid.appendChild(card);
     });
+}
+
+function renderArticles() {
+    const grid = document.getElementById('articlesGrid');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+
+    // Get featured articles (limit to 3 for homepage)
+    const articles = typeof getFeaturedArticles === 'function'
+        ? getFeaturedArticles(3)
+        : (typeof getArticles === 'function' ? getArticles().slice(0, 3) : []);
+
+    if (articles.length === 0) {
+        grid.innerHTML = `<p class="text-center" style="grid-column: 1/-1; color: #666;">${t('no_results')}</p>`;
+        return;
+    }
+
+    articles.forEach((article, index) => {
+        const card = createArticleCard(article, index);
+        grid.appendChild(card);
+    });
+}
+
+function createArticleCard(article, index) {
+    const card = document.createElement('div');
+    card.className = 'card article-card fade-in';
+    card.style.animationDelay = `${index * 0.1}s`;
+
+    const lang = appState.currentLang;
+    const title = article.title[lang] || article.title.en;
+    const excerpt = article.excerpt[lang] || article.excerpt.en;
+    const thumbnail = article.thumbnail;
+    const category = article.category[lang] || article.category.en;
+    const readTime = article.readTime;
+    const author = article.author;
+
+    card.innerHTML = `
+        <div class="card-image">
+            <img src="${thumbnail}" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1528181304800-259b08848526?w=600'">
+            <span class="card-badge">${category}</span>
+        </div>
+        <div class="card-content">
+            <h3>${title}</h3>
+            <p>${excerpt}</p>
+            <div class="card-meta">
+                <span><i class="fas fa-user"></i> ${author}</span>
+                <span><i class="fas fa-clock"></i> ${readTime} ${lang === 'th' ? 'นาที' : lang === 'zh' ? '分钟' : 'min'}</span>
+            </div>
+        </div>
+    `;
+
+    card.addEventListener('click', () => {
+        // Navigate to article page
+        window.location.href = `article.html?slug=${article.slug}`;
+    });
+
+    return card;
 }
 
 function createCard(item, type, index) {

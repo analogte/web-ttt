@@ -13,6 +13,7 @@ const translations = {
         nav_events: "กิจกรรม",
         nav_restaurants: "ร้านอาหาร",
         nav_hotels: "ที่พัก",
+        nav_articles: "บทความ",
         nav_contact: "ติดต่อ",
 
         // Hero
@@ -50,6 +51,17 @@ const translations = {
         // Hotels
         hotels_title: "ที่พักยอดนิยม",
         hotels_subtitle: "ที่พักหลากหลายสไตล์ ตอบโจทย์ทุกการเดินทาง",
+
+        // Articles
+        articles_title: "บทความท่องเที่ยว",
+        articles_subtitle: "เคล็ดลับและแนะนำการท่องเที่ยวจากผู้เชี่ยวชาญ",
+        article_page_title: "บทความ - เที่ยวไทย",
+        article_back: "กลับหน้าหลัก",
+        article_share: "แชร์บทความ",
+        article_related: "บทความที่เกี่ยวข้อง",
+        article_not_found: "ไม่พบบทความ",
+        article_not_found_text: "บทความที่คุณกำลังหาอาจถูกลบหรือไม่มีอยู่",
+        article_read_time: "นาที",
 
         // Provinces/Regions
         provinces_title: "ท่องเที่ยวตามภูมิภาค",
@@ -122,6 +134,7 @@ const translations = {
         nav_events: "Events",
         nav_restaurants: "Restaurants",
         nav_hotels: "Hotels",
+        nav_articles: "Articles",
         nav_contact: "Contact",
 
         // Hero
@@ -159,6 +172,17 @@ const translations = {
         // Hotels
         hotels_title: "Popular Accommodations",
         hotels_subtitle: "Various styles of accommodations for every journey",
+
+        // Articles
+        articles_title: "Travel Articles",
+        articles_subtitle: "Expert tips and travel recommendations",
+        article_page_title: "Articles - Amazing Thailand",
+        article_back: "Back to Home",
+        article_share: "Share Article",
+        article_related: "Related Articles",
+        article_not_found: "Article Not Found",
+        article_not_found_text: "The article you are looking for may have been removed or does not exist",
+        article_read_time: "min read",
 
         // Provinces/Regions
         provinces_title: "Explore by Region",
@@ -231,6 +255,7 @@ const translations = {
         nav_events: "活动",
         nav_restaurants: "餐厅",
         nav_hotels: "酒店",
+        nav_articles: "文章",
         nav_contact: "联系我们",
 
         // Hero
@@ -268,6 +293,17 @@ const translations = {
         // Hotels
         hotels_title: "热门住宿",
         hotels_subtitle: "多种风格住宿，满足每次旅行",
+
+        // Articles
+        articles_title: "旅游文章",
+        articles_subtitle: "专家旅行提示和推荐",
+        article_page_title: "文章 - 泰国旅游",
+        article_back: "返回首页",
+        article_share: "分享文章",
+        article_related: "相关文章",
+        article_not_found: "文章未找到",
+        article_not_found_text: "您正在查找的文章可能已被删除或不存在",
+        article_read_time: "分钟阅读",
 
         // Provinces/Regions
         provinces_title: "按地区探索",
