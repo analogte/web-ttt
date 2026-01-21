@@ -1,0 +1,12 @@
+{
+  "name": "thailand-travel-guide",
+  "version": "1.0.0",
+  "description": "Thailand Tourism Guide - Discover Thailand",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build required'"
+  }
+}
