@@ -1,0 +1,13 @@
+# robots.txt for Thailand Travel Guide
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://thailand-travel-guide.vercel.app/sitemap.xml
+
+# Block API endpoints from indexing
+Disallow: /api/
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1

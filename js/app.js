@@ -1,10 +1,9 @@
 // Thai Tourism Website - Main Application
-// TAT API Integration with Multilingual Support
+// API Proxy Integration with Multilingual Support
 
-// TAT API Configuration
-const TAT_API = {
-    baseUrl: 'https://tatapi.tourismthailand.org/tatapi/v5',
-    apiKey: 'nxRs0kohC7BUX0tkwwtfEc5RZ0n0CcG2'
+// API Configuration (using Vercel serverless functions)
+const API = {
+    baseUrl: '/api'
 };
 
 // Application State
@@ -181,10 +180,10 @@ function initHeroSlider() {
     startSlider();
 }
 
-// ==================== TAT API Integration ====================
+// ==================== API Integration ====================
 
-async function fetchFromTAT(endpoint, params = {}) {
-    const url = new URL(`${TAT_API.baseUrl}${endpoint}`);
+async function fetchFromAPI(endpoint, params = {}) {
+    const url = new URL(`${window.location.origin}${API.baseUrl}${endpoint}`);
     Object.keys(params).forEach(key => {
         if (params[key]) url.searchParams.append(key, params[key]);
     });
@@ -193,7 +192,6 @@ async function fetchFromTAT(endpoint, params = {}) {
         const response = await fetch(url, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${TAT_API.apiKey}`,
                 'Accept-Language': appState.currentLang === 'zh' ? 'zh-cn' : appState.currentLang,
                 'Accept': 'application/json'
             }
@@ -205,7 +203,7 @@ async function fetchFromTAT(endpoint, params = {}) {
 
         return await response.json();
     } catch (error) {
-        console.error('TAT API Error:', error);
+        console.error('API Error:', error);
         return null;
     }
 }
@@ -228,7 +226,7 @@ async function loadAllData() {
 }
 
 async function loadAttractions() {
-    const data = await fetchFromTAT('/attraction', {
+    const data = await fetchFromAPI('/attractions', {
         numberOfResult: appState.pageSize,
         pagenumber: appState.currentPage.attractions,
         categorycodes: 'ATTRACTION'
@@ -247,7 +245,7 @@ async function loadAttractions() {
 }
 
 async function loadEvents() {
-    const data = await fetchFromTAT('/event', {
+    const data = await fetchFromAPI('/events', {
         numberOfResult: appState.pageSize
     });
 
@@ -263,7 +261,7 @@ async function loadEvents() {
 }
 
 async function loadRestaurants() {
-    const data = await fetchFromTAT('/restaurant', {
+    const data = await fetchFromAPI('/restaurants', {
         numberOfResult: appState.pageSize
     });
 
@@ -279,7 +277,7 @@ async function loadRestaurants() {
 }
 
 async function loadHotels() {
-    const data = await fetchFromTAT('/accommodation', {
+    const data = await fetchFromAPI('/hotels', {
         numberOfResult: appState.pageSize
     });
 
@@ -534,7 +532,7 @@ async function performSearch() {
 
     showLoading('attractionsLoading', true);
 
-    const data = await fetchFromTAT('/attraction/search', {
+    const data = await fetchFromAPI('/search', {
         keyword: keyword,
         categorycodes: category,
         provinceName: province,
@@ -741,14 +739,48 @@ function getDefaultImage(type) {
 }
 
 // Contact form submission
-document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+document.getElementById('contactForm')?.addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    // Show success message
-    alert(appState.currentLang === 'th' ? 'ส่งข้อความเรียบร้อยแล้ว!' :
-          appState.currentLang === 'zh' ? '消息已发送！' : 'Message sent successfully!');
+    const formData = new FormData(this);
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message')
+    };
 
-    this.reset();
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = t('loading');
+
+    try {
+        const response = await fetch(`${API.baseUrl}/contact`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert(appState.currentLang === 'th' ? 'ส่งข้อความเรียบร้อยแล้ว!' :
+                  appState.currentLang === 'zh' ? '消息已发送！' : 'Message sent successfully!');
+            this.reset();
+        } else {
+            throw new Error(result.error || 'Failed to send message');
+        }
+    } catch (error) {
+        console.error('Contact form error:', error);
+        alert(appState.currentLang === 'th' ? 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง' :
+              appState.currentLang === 'zh' ? '发生错误，请重试' : 'An error occurred. Please try again.');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    }
 });
 
 // Region card click handler

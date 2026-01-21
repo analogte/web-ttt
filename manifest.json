@@ -1,0 +1,43 @@
+{
+  "name": "เที่ยวไทย - Discover Thailand",
+  "short_name": "เที่ยวไทย",
+  "description": "ค้นพบสถานที่ท่องเที่ยวที่น่าสนใจในประเทศไทย วัด ชายหาด เกาะ ภูเขา อาหารไทย และที่พัก",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FF6B35",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "th",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1528181304800-259b08848526?w=192&h=192&fit=crop",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1528181304800-259b08848526?w=512&h=512&fit=crop",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["travel", "tourism", "lifestyle"],
+  "screenshots": [
+    {
+      "src": "https://images.unsplash.com/photo-1528181304800-259b08848526?w=1280&h=720&fit=crop",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Thailand Tourism Homepage"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=750&h=1334&fit=crop",
+      "sizes": "750x1334",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Thailand Tourism Mobile"
+    }
+  ]
+}
