@@ -1,9 +1,14 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
+  "build": {
+    "env": {
+      "NODE_VERSION": "20"
+    }
+  },
   "functions": {
     "api/**/*.js": {
-      "runtime": "@vercel/node@3.0.0"
+      "runtime": "@vercel/node@3.2.0"
     }
   },
   "rewrites": [
