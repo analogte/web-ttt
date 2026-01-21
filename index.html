@@ -65,6 +65,8 @@
                     <li><a href="#restaurants" data-i18n="nav_restaurants">ร้านอาหาร</a></li>
                     <li><a href="#hotels" data-i18n="nav_hotels">ที่พัก</a></li>
                     <li><a href="#articles" data-i18n="nav_articles">บทความ</a></li>
+                    <li><a href="#itineraries" data-i18n="nav_itineraries">แผนการเดินทาง</a></li>
+                    <li><a href="#map" data-i18n="nav_map">แผนที่</a></li>
                     <li><a href="#contact" data-i18n="nav_contact">ติดต่อ</a></li>
                 </ul>
 
@@ -238,6 +240,57 @@
         </div>
     </section>
 
+    <!-- Itineraries Section -->
+    <section id="itineraries" class="section itineraries-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="itineraries_title">แผนการเดินทาง</h2>
+                <p data-i18n="itineraries_subtitle">แผนเที่ยวสำเร็จรูป พร้อมใช้งานทันที</p>
+            </div>
+            <div class="itineraries-grid" id="itinerariesGrid">
+                <!-- Itineraries will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section id="map" class="section map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="map_title">แผนที่ท่องเที่ยว</h2>
+                <p data-i18n="map_subtitle">ค้นหาสถานที่ท่องเที่ยวบนแผนที่</p>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="map-filters">
+                <button class="map-filter-btn active" data-category="all" data-i18n="map_filter_all">ทั้งหมด</button>
+                <button class="map-filter-btn" data-category="temple" data-i18n="map_filter_temple">
+                    <i class="fas fa-place-of-worship"></i> วัด
+                </button>
+                <button class="map-filter-btn" data-category="beach" data-i18n="map_filter_beach">
+                    <i class="fas fa-umbrella-beach"></i> ชายหาด
+                </button>
+                <button class="map-filter-btn" data-category="island" data-i18n="map_filter_island">
+                    <i class="fas fa-water"></i> เกาะ
+                </button>
+                <button class="map-filter-btn" data-category="nature" data-i18n="map_filter_nature">
+                    <i class="fas fa-mountain"></i> ธรรมชาติ
+                </button>
+                <button class="map-filter-btn" data-category="attraction" data-i18n="map_filter_attraction">
+                    <i class="fas fa-camera"></i> สถานที่
+                </button>
+                <button class="map-filter-btn" data-category="shopping" data-i18n="map_filter_shopping">
+                    <i class="fas fa-shopping-bag"></i> ช้อปปิ้ง
+                </button>
+            </div>
+
+            <!-- Map Container -->
+            <div class="map-container">
+                <div id="interactiveMap" class="interactive-map"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Provinces Section -->
     <section class="section provinces-section">
         <div class="container">
@@ -400,6 +453,11 @@
 
     <script src="js/translations.js"></script>
     <script src="js/articles.js"></script>
+    <script src="js/itineraries.js"></script>
+    <script src="js/map-data.js"></script>
+    <script src="js/map.js"></script>
     <script src="js/app.js"></script>
+    <!-- Google Maps API - Replace YOUR_API_KEY with actual key -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </body>
 </html>

@@ -30,6 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initSearch();
     initModal();
     loadAllData();
+
+    // Initialize map placeholder (Google Maps will call initMap when ready)
+    setTimeout(() => {
+        if (typeof google === 'undefined' && typeof initMap === 'function') {
+            initMap(); // Show placeholder if Google Maps not loaded
+        }
+    }, 2000);
 });
 
 // ==================== Language System ====================
@@ -71,8 +78,9 @@ function setLanguage(lang) {
         renderHotels();
     }
 
-    // Re-render articles with new language
+    // Re-render articles and itineraries with new language
     renderArticles();
+    renderItineraries();
 }
 
 function translatePage(lang) {
@@ -218,8 +226,9 @@ async function loadAllData() {
     showLoading('restaurantsLoading', true);
     showLoading('hotelsLoading', true);
 
-    // Render articles immediately (they're local data)
+    // Render articles and itineraries immediately (they're local data)
     renderArticles();
+    renderItineraries();
 
     // Load all data in parallel
     await Promise.all([
@@ -410,6 +419,72 @@ function createArticleCard(article, index) {
     card.addEventListener('click', () => {
         // Navigate to article page
         window.location.href = `article.html?slug=${article.slug}`;
+    });
+
+    return card;
+}
+
+function renderItineraries() {
+    const grid = document.getElementById('itinerariesGrid');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+
+    // Get featured itineraries (limit to 3 for homepage)
+    const itineraries = typeof getFeaturedItineraries === 'function'
+        ? getFeaturedItineraries(3)
+        : (typeof getItineraries === 'function' ? getItineraries().slice(0, 3) : []);
+
+    if (itineraries.length === 0) {
+        grid.innerHTML = `<p class="text-center" style="grid-column: 1/-1; color: #666;">${t('no_results')}</p>`;
+        return;
+    }
+
+    itineraries.forEach((itinerary, index) => {
+        const card = createItineraryCard(itinerary, index);
+        grid.appendChild(card);
+    });
+}
+
+function createItineraryCard(itinerary, index) {
+    const card = document.createElement('div');
+    card.className = 'card itinerary-card fade-in';
+    card.style.animationDelay = `${index * 0.1}s`;
+
+    const lang = appState.currentLang;
+    const title = itinerary.title[lang] || itinerary.title.en;
+    const description = itinerary.description[lang] || itinerary.description.en;
+    const destination = itinerary.destination[lang] || itinerary.destination.en;
+    const thumbnail = itinerary.thumbnail;
+    const duration = itinerary.duration;
+    const budget = itinerary.budget[lang] || itinerary.budget.en;
+    const highlights = (itinerary.highlights[lang] || itinerary.highlights.en).slice(0, 3);
+
+    const daysText = lang === 'th' ? 'วัน' : lang === 'zh' ? '天' : 'Days';
+    const nightsText = lang === 'th' ? 'คืน' : lang === 'zh' ? '夜' : 'Nights';
+    const viewText = lang === 'th' ? 'ดูรายละเอียด' : lang === 'zh' ? '查看详情' : 'View Details';
+
+    card.innerHTML = `
+        <div class="card-image">
+            <img src="${thumbnail}" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1528181304800-259b08848526?w=600'">
+            <span class="duration-badge"><i class="fas fa-calendar-alt"></i> ${duration} ${daysText} ${duration - 1} ${nightsText}</span>
+            <span class="destination-badge">${destination}</span>
+        </div>
+        <div class="card-content">
+            <h3>${title}</h3>
+            <p>${description}</p>
+            <div class="card-highlights">
+                ${highlights.map(h => `<span class="highlight-chip">${h}</span>`).join('')}
+            </div>
+            <div class="card-footer">
+                <span class="card-budget"><i class="fas fa-wallet"></i> ${budget}</span>
+                <span class="card-cta">${viewText} <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </div>
+    `;
+
+    card.addEventListener('click', () => {
+        window.location.href = `itinerary.html?slug=${itinerary.slug}`;
     });
 
     return card;

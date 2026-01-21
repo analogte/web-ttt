@@ -63,6 +63,27 @@ const translations = {
         article_not_found_text: "บทความที่คุณกำลังหาอาจถูกลบหรือไม่มีอยู่",
         article_read_time: "นาที",
 
+        // Itineraries
+        nav_itineraries: "แผนการเดินทาง",
+        itineraries_title: "แผนการเดินทาง",
+        itineraries_subtitle: "แผนเที่ยวสำเร็จรูป พร้อมใช้งานทันที",
+        itinerary_page_title: "แผนการเดินทาง - เที่ยวไทย",
+        itinerary_days: "วัน",
+        itinerary_nights: "คืน",
+        itinerary_view_detail: "ดูรายละเอียด",
+
+        // Map
+        nav_map: "แผนที่",
+        map_title: "แผนที่ท่องเที่ยว",
+        map_subtitle: "ค้นหาสถานที่ท่องเที่ยวบนแผนที่",
+        map_filter_all: "ทั้งหมด",
+        map_filter_temple: "วัด",
+        map_filter_beach: "ชายหาด",
+        map_filter_island: "เกาะ",
+        map_filter_nature: "ธรรมชาติ",
+        map_filter_attraction: "สถานที่ท่องเที่ยว",
+        map_filter_shopping: "ช้อปปิ้ง",
+
         // Provinces/Regions
         provinces_title: "ท่องเที่ยวตามภูมิภาค",
         provinces_subtitle: "เลือกภูมิภาคที่คุณสนใจ",
@@ -184,6 +205,27 @@ const translations = {
         article_not_found_text: "The article you are looking for may have been removed or does not exist",
         article_read_time: "min read",
 
+        // Itineraries
+        nav_itineraries: "Itineraries",
+        itineraries_title: "Travel Itineraries",
+        itineraries_subtitle: "Ready-to-use travel plans for your trip",
+        itinerary_page_title: "Itinerary - Amazing Thailand",
+        itinerary_days: "Days",
+        itinerary_nights: "Nights",
+        itinerary_view_detail: "View Details",
+
+        // Map
+        nav_map: "Map",
+        map_title: "Travel Map",
+        map_subtitle: "Find tourist attractions on the map",
+        map_filter_all: "All",
+        map_filter_temple: "Temples",
+        map_filter_beach: "Beaches",
+        map_filter_island: "Islands",
+        map_filter_nature: "Nature",
+        map_filter_attraction: "Attractions",
+        map_filter_shopping: "Shopping",
+
         // Provinces/Regions
         provinces_title: "Explore by Region",
         provinces_subtitle: "Choose your region of interest",
@@ -304,6 +346,27 @@ const translations = {
         article_not_found: "文章未找到",
         article_not_found_text: "您正在查找的文章可能已被删除或不存在",
         article_read_time: "分钟阅读",
+
+        // Itineraries
+        nav_itineraries: "行程",
+        itineraries_title: "旅行行程",
+        itineraries_subtitle: "即用型旅行计划",
+        itinerary_page_title: "行程 - 泰国旅游",
+        itinerary_days: "天",
+        itinerary_nights: "夜",
+        itinerary_view_detail: "查看详情",
+
+        // Map
+        nav_map: "地图",
+        map_title: "旅游地图",
+        map_subtitle: "在地图上查找旅游景点",
+        map_filter_all: "全部",
+        map_filter_temple: "寺庙",
+        map_filter_beach: "海滩",
+        map_filter_island: "岛屿",
+        map_filter_nature: "自然",
+        map_filter_attraction: "景点",
+        map_filter_shopping: "购物",
 
         // Provinces/Regions
         provinces_title: "按地区探索",
